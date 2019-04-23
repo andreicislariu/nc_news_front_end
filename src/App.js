@@ -4,6 +4,7 @@ import Nav from './components/Nav';
 import Articles from './components/Articles';
 import Footer from './components/Footer';
 import './App.css';
+import { Router } from '@reach/router';
 
 class App extends Component {
   state = {
@@ -28,7 +29,10 @@ class App extends Component {
       <div className="App">
         <Header />
         <Nav topics={topics} />
-        <Articles />
+        <Router className="main">
+          <Articles path="/" />
+          <Articles path="/topics/:topic" />
+        </Router>
         <Footer />
       </div>
     );
