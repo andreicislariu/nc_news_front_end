@@ -1,15 +1,20 @@
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans');
+
 .nav {
   display: flex;
   flex-direction: column;
-  align-items: left;
   text-decoration: none;
+  padding-top: 10%;
 }
 
 .link {
+  font-family: 'IBM Plex Sans', Arial, sans-serif;
+  font-size: 1.5em;
+  letter-spacing: normal;
+  line-height: 1.6em;
   text-decoration: none;
-  color: rgb(0, 0, 0);
-  width: 20vw;
-  margin: 0 auto;
+  /* color: #c1c7d1; */
+  /* margin: 0 auto; */
 }
 
 .link:hover {

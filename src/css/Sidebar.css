@@ -1,0 +1,18 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  text-decoration: none;
+}
+
+.link {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  width: 20vw;
+  margin: 0 auto;
+}
+
+.link:hover {
+  cursor: pointer;
+  color: rgb(142, 150, 172);
+}
