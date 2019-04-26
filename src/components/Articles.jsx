@@ -1,3 +1,4 @@
+// asta e display article
 import React, { Component } from 'react';
 import * as api from '../api';
 import { Link } from '@reach/router';
@@ -14,7 +15,10 @@ class Articles extends Component {
     if (topic) {
       return (
         <div className="article-container box-wrap">
-          <h2>Articles on: {topic.charAt(0).toUpperCase() + topic.slice(1)}</h2>
+          <h2>
+            Articles on: {topic.charAt(0).toUpperCase() + topic.slice(1)}
+            <hr />{' '}
+          </h2>
           {topics.map(topic =>
             topic === topic.slug ? (
               <div className="articleTitle">
