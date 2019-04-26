@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Router } from '@reach/router';
 import Header from './components/Header';
 import Nav from './components/Nav';
-
 import Articles from './components/Articles';
 import ArticleCard from './components/ArticleCard';
+import Auth from './components/Auth';
 import Sidebar from './components/Sidebar';
 import Footer from './components/Footer';
 import * as api from './api';
@@ -13,11 +13,13 @@ import '../src/css/App.css';
 
 class App extends Component {
   state = {
-    topics: []
+    topics: [],
+    user: null,
+    loginFailed: false
     // isLoading: true
   };
   render() {
-    const { topics, articles } = this.state;
+    const { topics, articles, user } = this.state;
     // if (this.state.isLoading) {
     //   return <p>Loading ...</p>;
     // }
@@ -27,11 +29,17 @@ class App extends Component {
         <Header />
         {/* <Spinner /> */}
         <Nav topics={topics} />
-        <Router className="main">
-          <Articles path="/" />
-          <Articles path="/topics/:topic" topics={topics} articles={articles} />
-          <ArticleCard path="/articles/:article_id" articles={articles} />
-        </Router>
+        <Auth user={user} login={this.login}>
+          <Router className="main">
+            <Articles path="/" />
+            <Articles
+              path="/topics/:topic"
+              topics={topics}
+              articles={articles}
+            />
+            <ArticleCard path="/articles/:article_id" articles={articles} />
+          </Router>
+        </Auth>
         <Sidebar />
         <Footer />
       </div>
@@ -40,6 +48,7 @@ class App extends Component {
 
   componentDidMount() {
     this.fetchTopics();
+    // this.setState({ isLoading: false });
   }
 
   fetchTopics = () => {
@@ -49,6 +58,21 @@ class App extends Component {
         // isLoading: false
       })
     );
+  };
+
+  login = username => {
+    api
+      .getUser(username)
+      .then(user => {
+        this.setState({
+          user
+        });
+      })
+      .catch(err => {
+        this.setState({
+          loginFailed: true
+        });
+      });
   };
 }
 
