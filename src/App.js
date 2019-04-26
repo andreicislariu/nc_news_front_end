@@ -8,7 +8,7 @@ import ArticleCard from './components/ArticleCard';
 import Sidebar from './components/Sidebar';
 import Footer from './components/Footer';
 import * as api from './api';
-import './App.css';
+import '../src/css/App.css';
 // import Spinner from 'react-spinner-material';
 
 class App extends Component {
