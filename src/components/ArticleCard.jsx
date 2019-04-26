@@ -4,7 +4,9 @@ import * as api from '../api';
 
 class ArticleCard extends Component {
   state = {
-    article: {}
+    article: {},
+    comments: [],
+    vote_inc: 1
   };
 
   render() {
@@ -16,7 +18,7 @@ class ArticleCard extends Component {
       body,
       votes
     } = this.state.article;
-
+    console.log(this.state, '<--- the state');
     return (
       <div className="articleCard">
         <h3 className="articleTitle">{title}</h3>
