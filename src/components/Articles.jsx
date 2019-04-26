@@ -17,7 +17,7 @@ class Articles extends Component {
         <div className="article-container box-wrap">
           <h2>
             Articles on: {topic.charAt(0).toUpperCase() + topic.slice(1)}
-            <hr />{' '}
+            <hr className="lineBreak" />{' '}
           </h2>
           {topics.map(topic =>
             topic === topic.slug ? (
