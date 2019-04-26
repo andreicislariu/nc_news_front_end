@@ -5,7 +5,15 @@ const Sidebar = () => {
   return (
     <div className="sidebar">
       <p>Hot Topics</p>
-      <p>Work on progress... 🚧</p>
+      <p>
+        <span
+          role="img"
+          aria-label="Construction Sign"
+          aria-labelledby="construction1"
+        >
+          Work on progress... 🚧
+        </span>
+      </p>
     </div>
   );
 };
