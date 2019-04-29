@@ -1,32 +1,45 @@
 import React, { Component } from 'react';
-// import { Link } from '@reach/router';
+import Comments from './Comments';
 import * as api from '../api';
+import Votes from './Votes';
+import axios from 'axios';
 
 class ArticleCard extends Component {
   state = {
     article: {},
-    comments: [],
-    vote_inc: 1
+    comments: []
   };
 
   render() {
     const {
-      // article_id,
+      article_id,
       title,
       author,
       comment_count,
       body,
       votes
     } = this.state.article;
-    console.log(this.state, '<--- the state');
+
+    const { comments } = this.state;
+    const { user } = this.props;
+    let username = user[0].username;
+
     return (
       <div className="articleCard">
         <h3 className="articleTitle">{title}</h3>
         <div className="article">
           <p>By: {author}</p>
+          {<hr />}
           <p>{body}</p>
-          {<br />}
+          <Votes votes={votes} id={article_id} section="articles" />
+          {<hr />}
           <p>{`Comments: ${comment_count}, Votes: ${votes}`}</p>
+          <Comments
+            article_id={article_id}
+            comments={comments}
+            username={username}
+            handleCommentDelete={this.handleCommentDelete}
+          />
         </div>
       </div>
     );
@@ -34,14 +47,28 @@ class ArticleCard extends Component {
 
   componentDidMount() {
     this.fetchArticle();
+    this.fetchComment();
   }
 
   fetchArticle = () => {
-    api.getArticlesById(this.props.article_id).then(article => {
-      this.setState({
-        article
+    const { article_id } = this.props;
+    api.getArticlesById(article_id).then(article => this.setState({ article }));
+    // .catch(err => {
+    //   navigate('/error', { replace: true });
+    // });
+  };
+
+  fetchComment = () => {
+    const { article_id } = this.props;
+    axios
+      .get(
+        `https://nc-news-ap-i.herokuapp.com/api/articles/${article_id}/comments`
+      )
+      .then(({ data }) => {
+        this.setState({
+          comments: data.comments
+        });
       });
-    });
   };
 }
 

@@ -1,8 +1,8 @@
-// asta e display article
 import React, { Component } from 'react';
 import * as api from '../api';
 import { Link } from '@reach/router';
 import '../css/Articles.css';
+import Sorter from './Sorter';
 
 class Articles extends Component {
   state = {
@@ -17,7 +17,7 @@ class Articles extends Component {
         <div className="article-container box-wrap">
           <h2>
             Articles on: {topic.charAt(0).toUpperCase() + topic.slice(1)}
-            <hr className="lineBreak" />{' '}
+            <hr className="lineBreak" />
           </h2>
           {topics.map(topic =>
             topic === topic.slug ? (
@@ -48,18 +48,17 @@ class Articles extends Component {
     } else {
       return (
         <div className="article-container box-wrap">
-          <h2>All Articles</h2>
+          <h2>North Coders Articles</h2>
+          <Sorter />
           {articles.map(({ title, article_id, author }) => {
             return (
               <div className="article-card box" key={article_id}>
-                {/* <div className="articleTitle"> */}
                 <Link to={`/articles/${article_id}`} className="article">
                   <h3 className="article-card box" key={article_id}>
                     {title}
                   </h3>
                   <p>By: {author}</p>
                 </Link>
-                {/* </div> */}
               </div>
             );
           })}
