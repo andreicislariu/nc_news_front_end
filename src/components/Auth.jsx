@@ -24,6 +24,7 @@ class Auth extends Component {
             <label>
               <h3>Username:</h3>
             </label>
+            <hr />
             <input
               type="text"
               placeholder="grumpy19"
@@ -32,7 +33,10 @@ class Auth extends Component {
               id="username"
               required
             />
-            <button type="submit">Login</button>
+            <br />
+            <button className="loginLogout" type="submit">
+              Login
+            </button>
           </form>
         )}
       </div>
