@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
 
+import axios from 'axios';
+import '../css/Auth.css';
 class Auth extends Component {
   state = {
-    username: ''
+    username: '',
+    value: '',
+    input: '',
+    noInput: false,
+    hasError: false
   };
+
   render() {
-    const { username } = this.state;
     const { user, children } = this.props;
     return (
-      <div>
+      <div className="main-auth">
         {user ? (
           children
         ) : (
@@ -19,8 +25,9 @@ class Auth extends Component {
               <h3>Username:</h3>
             </label>
             <input
+              type="text"
               placeholder="grumpy19"
-              value={username}
+              value={this.state.input}
               onChange={this.handleChange}
               id="username"
               required
@@ -33,12 +40,29 @@ class Auth extends Component {
   }
 
   handleChange = event => {
-    const { id, value } = event.target;
-    this.setState({ [id]: value });
+    const { value } = event.target;
+    this.setState({ input: value });
   };
+
   handleSubmit = event => {
     event.preventDefault();
-    this.props.login(this.state.username);
+    const { input } = this.state;
+
+    if (input.length < 1) {
+      this.setState({ noInput: true, hasError: false });
+    } else {
+      axios
+        .get(`https://nc-news-ap-i.herokuapp.com/api/users/${input}`)
+        .then(({ data }) => {
+          this.props.login(data);
+        })
+        .then(() => {
+          this.setState({ input: '', hasError: false, noInput: false });
+        })
+        .catch(err => {
+          this.setState({ hasError: true, noInput: false });
+        });
+    }
   };
 }
 
