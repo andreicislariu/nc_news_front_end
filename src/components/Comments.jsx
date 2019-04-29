@@ -31,7 +31,9 @@ class Comments extends Component {
                   value={newComment}
                 />
                 <br />
-                <button type="submit">Post</button>
+                <button className="voteArrowButton" type="submit">
+                  Post
+                </button>
               </form>
             ) : null}
             {comments.map(comment => (
@@ -40,12 +42,6 @@ class Comments extends Component {
                 {comment.body} <br />
                 <p> Author: {comment.author} </p> <br />
                 <p> Date: {comment.created_at.slice(0, 10)} </p> <br />
-                {<hr />}
-                {this.props.username === comment.author ? (
-                  <form id={comment.comment_id} onSubmit={this.deleteComment}>
-                    <button type="submit">Delete</button>{' '}
-                  </form>
-                ) : null}
                 <Votes
                   id={comment.comment_id}
                   votes={comment.votes}
@@ -55,6 +51,14 @@ class Comments extends Component {
                   getComments={this.getComments}
                   check={'body'}
                 />
+                {this.props.username === comment.author ? (
+                  <form id={comment.comment_id} onSubmit={this.deleteComment}>
+                    <button className="deleteButton" type="submit">
+                      Delete
+                    </button>
+                    {/* <hr /> */}
+                  </form>
+                ) : null}
               </span>
             ))}
           </div>
