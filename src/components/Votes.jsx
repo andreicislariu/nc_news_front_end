@@ -8,6 +8,7 @@ class Votes extends Component {
   render() {
     const { changeVote } = this.state;
     const { votes } = this.props;
+
     return (
       <div>
         <button onClick={() => this.vote(1)} disabled={changeVote === 1}>
@@ -16,7 +17,7 @@ class Votes extends Component {
             ⬆️
           </span>
         </button>
-        <p>Votes: {votes}</p>
+        <p>Votes: {votes + changeVote}</p>
         <button onClick={() => this.vote(-1)} disabled={changeVote === -1}>
           <span role="img" aria-label="Down-Arrow" aria-labelledby="downarrow1">
             ⬇️
@@ -28,12 +29,12 @@ class Votes extends Component {
 
   vote = inc_votes => {
     const { id, section } = this.props;
+    console.log(id, 'votes article id');
     api.vote(inc_votes, id, section).catch(err => {
       this.setState(state => ({
         changeVote: state.changeVote - inc_votes
       }));
     });
-
     this.setState(state => ({
       changeVote: state.changeVote + inc_votes
     }));
