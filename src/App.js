@@ -9,35 +9,34 @@ import Sidebar from './components/Sidebar';
 import Footer from './components/Footer';
 import * as api from './api';
 import '../src/css/App.css';
-// import Spinner from 'react-spinner-material';
 
 class App extends Component {
   state = {
     topics: [],
-    user: null,
-    loginFailed: false
-    // isLoading: true
+    user: '',
+    username: {},
+    loggedIn: false
   };
   render() {
     const { topics, articles, user } = this.state;
-    // if (this.state.isLoading) {
-    //   return <p>Loading ...</p>;
-    // }
-
     return (
       <div className="App">
-        <Header />
-        {/* <Spinner /> */}
+        <Header handleLogOut={this.handleLogOut} />
         <Nav topics={topics} />
         <Auth user={user} login={this.login}>
           <Router className="main">
             <Articles path="/" />
+            <Articles path="/articles" />
             <Articles
               path="/topics/:topic"
               topics={topics}
               articles={articles}
             />
-            <ArticleCard path="/articles/:article_id" articles={articles} />
+            <ArticleCard
+              path="/articles/:article_id"
+              articles={articles}
+              user={user}
+            />
           </Router>
         </Auth>
         <Sidebar />
@@ -47,32 +46,30 @@ class App extends Component {
   }
 
   componentDidMount() {
+    if (localStorage.getItem('user')) {
+      this.setState({ user: JSON.parse(localStorage.getItem('user')) });
+    }
     this.fetchTopics();
-    // this.setState({ isLoading: false });
   }
 
   fetchTopics = () => {
     api.getTopics().then(topics =>
       this.setState({
         topics
-        // isLoading: false
       })
     );
   };
 
-  login = username => {
-    api
-      .getUser(username)
-      .then(user => {
-        this.setState({
-          user
-        });
-      })
-      .catch(err => {
-        this.setState({
-          loginFailed: true
-        });
-      });
+  login = ({ user }) => {
+    this.setState({ user });
+    localStorage.setItem('user', JSON.stringify(user));
+  };
+
+  handleLogOut = () => {
+    this.setState({ user: '' }, () => {
+      localStorage.removeItem('user');
+    });
+    // );
   };
 }
 
