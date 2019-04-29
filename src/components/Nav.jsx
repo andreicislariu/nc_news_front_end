@@ -5,7 +5,6 @@ import '../css/Nav.css';
 const Nav = ({ topics }) => {
   return (
     <nav className="nav">
-      {/* <p>Sidebar</p> */}
       <Link className="link" to="/">
         Home
       </Link>
