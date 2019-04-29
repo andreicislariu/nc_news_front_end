@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans');
+
+.comments-container {
+  /* background-color: bisque; */
+  font-family: 'IBM Plex Sans', Arial, sans-serif;
+  font-size: 1.5em;
+  letter-spacing: normal;
+  line-height: 24px;
+}
+
+.add-comment {
+  /* color: blanchedalmond; */
+}
