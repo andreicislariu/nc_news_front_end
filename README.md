@@ -27,7 +27,20 @@ npm install
   <li>React JS</li>
   <li>Axios</li>
   <li>Reach Router</li>
+  <li>Netlify</li>
 </ul>
+
+## API
+
+```
+https://nc-news-ap-i.herokuapp.com/api
+```
+
+## Front-End
+
+```
+https://nc-news-andrei.netlify.com/
+```
 
 ### Author
 
