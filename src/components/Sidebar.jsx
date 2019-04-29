@@ -4,7 +4,7 @@ import '../css/Sidebar.css';
 const Sidebar = () => {
   return (
     <div className="sidebar">
-      <p>Hot Topics</p>
+      {/* <p>Hot Topics</p>
       <p>
         <span
           role="img"
@@ -13,7 +13,7 @@ const Sidebar = () => {
         >
           Work on progress... 🚧
         </span>
-      </p>
+      </p> */}
     </div>
   );
 };
