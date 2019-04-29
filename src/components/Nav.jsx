@@ -5,11 +5,11 @@ import '../css/Nav.css';
 const Nav = ({ topics }) => {
   return (
     <nav className="nav">
-      <Link className="link" to="/">
+      <Link className="linkClass" to="/">
         Home
       </Link>
       {topics.map(({ slug }) => (
-        <Link key={slug} className="link" to={`/topics/${slug}`}>
+        <Link className="linkClass" key={slug} to={`/topics/${slug}`}>
           {slug.charAt(0).toUpperCase() + slug.slice(1)}
         </Link>
       ))}

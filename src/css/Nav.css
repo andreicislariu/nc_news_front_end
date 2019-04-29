@@ -4,20 +4,20 @@
   display: flex;
   flex-direction: column;
   text-decoration: none;
-  padding-top: 10%;
+  /* padding-top: 10%; */
 }
 
-.link {
+.linkClass {
   font-family: 'IBM Plex Sans', Arial, sans-serif;
   font-size: 1.5em;
   letter-spacing: normal;
   line-height: 1.6em;
   text-decoration: none;
-  /* color: #c1c7d1; */
+  color: #c1c7d1;
   /* margin: 0 auto; */
 }
 
-.link:hover {
+.linkClass:hover {
   cursor: pointer;
-  color: rgb(142, 150, 172);
+  color: #8e96ac;
 }
