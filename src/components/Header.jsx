@@ -9,9 +9,9 @@ const Header = props => {
         {/* <Link></Link> */}
         <span role="img" aria-label="Newspaper" aria-labelledby="newspaper">
           📰 NC News
-          <Link to="/" onClick={props.handleLogOut}>
+          {/* <Link to="/" onClick={props.handleLogOut}>
             <button className="loginLogout">Log Out</button>
-          </Link>
+          </Link> */}
         </span>
       </h1>
     </main>

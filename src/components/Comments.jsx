@@ -14,7 +14,6 @@ class Comments extends Component {
   render() {
     const { comments, username } = this.props;
     const { newComment } = this.state;
-
     return (
       <div className="Comments">
         {comments ? (
@@ -94,15 +93,16 @@ class Comments extends Component {
     if (newComment) {
       axios
         .post(`${URL}/articles/${article_id}/comments`, body)
+        // console.log(body, "<-- body")
         .then(({ data }) => {
           this.setState(state => ({
-            comments: [data.comment[0], ...state.comments],
+            comments: [ data.comment[0], ...state.comments],
             newComment: ''
           }));
         });
     }
   };
-
+  
   deleteComment = () => {
     const { article_id } = this.props;
     const { comment_id } = this.state.comments[0];
@@ -116,7 +116,7 @@ class Comments extends Component {
       return comment.comment_id !== comment_id;
     });
     this.setState({
-      comments: comments
+      comments
     });
   };
 }
